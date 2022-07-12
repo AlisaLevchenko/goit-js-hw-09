@@ -30,9 +30,12 @@ const options = {
 
 function startTimer() {
   startBtn.disabled = true;
-  setInterval(() => {
+  const interval = setInterval(() => {
     const dif = pickedDate - Date.now();
     const { days, hours, minutes, seconds } = convertMs(dif);
+    if (dif < 1000) {
+      clearInterval(interval);
+    }
     daysValue.textContent = days;
     hoursValue.textContent = hours;
     minutesValue.textContent = minutes;
